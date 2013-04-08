@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define XEXEC_VERSION "1.0.1"
-int main(int argc, char * * argv)
+int xpp_exec(int argc, char * * argv)
 {
 	int offset = 1; //for passing arglist
 	bool debug = false;
@@ -24,7 +24,7 @@ int main(int argc, char * * argv)
 		printf("x exec version: %s\n", XEXEC_VERSION);
 		return 0;
 	}
-	void* lib_handle = dlopen(argv[offset], RTLD_NOW);
+	void* lib_handle = dlopen(argv[offset], RTLD_LAZY);
 	if (lib_handle == NULL)
 	{
 		printf("Object file does not exist!\n");

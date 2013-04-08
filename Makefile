@@ -1,5 +1,6 @@
 all:
-	g++ -o ex exec.cpp
+	gcc -o ex exec.c
+	gcc -o sh shell.c
 	gcc -o xc compiler.c
 clean:
 	rm -rf ex
