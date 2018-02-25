@@ -35,7 +35,7 @@ int main(int argc, char * * argv)
 		offset = 2 + num_options;
 		for (int i = 3, j = 0; j < num_options; i++, j++)
 		{
-			sprintf(tmp, "%s ", argv[i]);
+			snprintf(tmp, 30, "%s ", argv[i]);
 			//printf("i: %d s: %s\n", i, argv[i]);
 			strcat(linker_fwd, tmp);
 		}
@@ -45,15 +45,15 @@ int main(int argc, char * * argv)
 	char infiles[argc * 30];
 	char command[(argc * 30) * 2];
 	strcpy(infiles, "");	
-	strcpy(outfile, argv[offset + 1]);
+	strncpy(outfile, argv[offset + 1], 30);
 	for (int i = 0, j = offset + 2; j < argc; i++, j++)
 	{
 		char tmp[30];
-		sprintf(tmp, "%s ", argv[j]);
+		snprintf(tmp, 30, "%s ", argv[j]);
 		strcat(infiles, tmp);
 	}
 	//printf("%s\n", infiles);
-	sprintf(command, "g++ -dynamiclib %s %s -o %s", infiles, linker_fwd, outfile);
+	snprintf(command, 30, "g++ -dynamiclib %s %s -o %s", infiles, linker_fwd, outfile);
 	//printf("Command line call: %s\n", command);
 	system(command);
 }
